@@ -1,6 +1,22 @@
 import json
+import csv
 
 lists = []
+
+lineOne = True
+
+with open("file.txt", "w") as f:
+	f.write("")
+
+file = open("Analysis-csv.csv", "r")
+csv_reader = csv.reader(file)
+
+for row in csv_reader:
+	with open("file.txt", "a") as f:
+		if lineOne == False:
+			f.write(str(row[2:19]).replace("'", "").replace("[", "").replace("]", "").replace(" ", "	").replace(",", "") + '\n')
+		else:
+			lineOne = False
 
 with open("series.json", "r") as f:
 	data = json.load(f)
