@@ -14,7 +14,7 @@ csv_reader = csv.reader(file)
 for row in csv_reader:
 	with open("file.txt", "a") as f:
 		if lineOne == False:
-			f.write(str(row[2:19]).replace("'", "").replace("[", "").replace("]", "").replace(" ", "	").replace(",", "") + '\n')
+			f.write(str(row[2:19]).replace("'", "").replace("[", "").replace("]", "").replace(",", "") + '\n')
 		else:
 			lineOne = False
 
