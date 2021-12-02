@@ -22,7 +22,7 @@ def creatingJsonFile(series, seriesLen):
 			data[str(series)]["length"] = int(seriesLen)
 
 		with open("series.json", 'w') as f:
-			json.dump(data, f)
+			json.dump(data, f, indent=4)
 
 with open("file.txt", "r") as file:
 	lines = file.readlines()
@@ -101,21 +101,80 @@ with open("file.txt", "r") as file:
 	with open("series.json", "r") as f:
 		data = json.load(f)
 
-		for i in range(3):
-			highstKey = ""
-			highstValue = 0
-			secondKey = ""
-			secondValue = 0
-			thirdKey = ""
-			thirdValue = 0
-			for key, value in data.items():
-				if data[key]["appearTimes"] > highstValue and data[key]["length"] == i+5:
-					highstKey = data[key]["series"]
-					highstValue = data[key]["appearTimes"]
-				if data[key]["appearTimes"] > secondValue and data[key]["length"] == i+5:
-					secondKey = data[key]["series"]
-					secondValue = data[key]["appearTimes"]
-					thirdValue = data[key]["appearTimes"]
-				if data[key]["appearTimes"] > thirdValue and data[key]["length"] == i+5:
-					thirdKey = data[key]["series"]
-					thirdValue = data[key]["appearTimes"]
+		highestSevenKey = ""
+		highestSevenValue = 0
+		secondSevenKey = ""
+		secondSevenValue = 0
+		thirdSevenKey = ""
+		thirdSevenValue = 0
+
+		highestSixKey = ""
+		highestSixValue = 0
+		secondSixKey = ""
+		secondSixValue = 0
+		thirdSixKey = ""
+		thirdSixValue = 0
+
+		highestFiveKey = ""
+		highestFiveValue = 0
+		secondFiveKey = ""
+		secondFiveValue = 0
+		thirdFiveKey = ""
+		thirdFiveValue = 0
+		for key, value in data.items():
+			if data[key]["length"] == 7:
+				if data[key]["appearTimes"] > highestSevenValue:
+					highestSevenValue = data[key]["appearTimes"]
+					highestSevenKey = data[key]["series"].replace("[", "").replace("]", "")
+				elif data[key]["appearTimes"] > secondSevenValue:
+					secondSevenValue = data[key]["appearTimes"]
+					secondSevenKey = data[key]["series"].replace("[", "").replace("]", "")
+				elif data[key]["appearTimes"] > thirdSevenValue:
+					thirdSevenValue = data[key]["appearTimes"]
+					thirdSevenKey = data[key]["series"].replace("[", "").replace("]", "")
+
+			if data[key]["length"] == 6:
+				if data[key]["appearTimes"] > highestSixValue:
+					highestSixValue = data[key]["appearTimes"]
+					highestSixKey = data[key]["series"].replace("[", "").replace("]", "")
+				elif data[key]["appearTimes"] > secondSixValue:
+					secondSixValue = data[key]["appearTimes"]
+					secondSixKey = data[key]["series"].replace("[", "").replace("]", "")
+				elif data[key]["appearTimes"] > thirdSixValue:
+					thirdSixValue = data[key]["appearTimes"]
+					thirdSixKey = data[key]["series"].replace("[", "").replace("]", "")
+
+			if data[key]["length"] == 5:
+				if data[key]["appearTimes"] > highestFiveValue:
+					highestFiveValue = data[key]["appearTimes"]
+					highestFiveKey = data[key]["series"].replace("[", "").replace("]", "")
+				elif data[key]["appearTimes"] > secondFiveValue:
+					secondFiveValue = data[key]["appearTimes"]
+					secondFiveKey = data[key]["series"].replace("[", "").replace("]", "")
+				elif data[key]["appearTimes"] > thirdFiveValue:
+					thirdFiveValue = data[key]["appearTimes"]
+					thirdFiveKey = data[key]["series"].replace("[", "").replace("]", "")
+				
+		if highestSevenValue != 0:
+			print(f"\nFirst Prize:\n	1. series: {highestSevenKey}, appears: {highestSevenValue}.")
+		else: print("Sorry, no 7 numbers series.")
+		if secondSevenValue != 0:
+			print(f"	2. series: {secondSevenKey}, appears: {secondSevenValue}.")
+		if thirdSevenValue != 0:
+			print(f"	3. series: {thirdSevenKey}, appears: {thirdSevenValue}.")
+
+		if highestSixValue != 0:
+			print(f"\nSecond Prize:\n	1. series: {highestSixKey}, appears: {highestSixValue}.")
+		else: print("Sorry, no 6 numbers series.")
+		if secondSixValue != 0:
+			print(f"	2. series: {secondSixKey}, appears: {secondSixValue}.")
+		if thirdSixValue != 0:
+			print(f"	3. series: {thirdSixKey}, appears: {thirdSixValue}.")
+
+		if highestFiveValue != 0:
+			print(f"\nThird Prize:\n	1. series: {highestFiveKey}, appears: {highestFiveValue}.")
+		else: print("Sorry, no 5 numbers series.")
+		if secondFiveValue != 0:
+			print(f"	2. series: {secondFiveKey}, appears: {secondFiveValue}.")
+		if thirdFiveValue != 0:
+			print(f"	3. series: {thirdFiveKey}, appears: {thirdFiveValue}.")
