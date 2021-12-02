@@ -1,6 +1,6 @@
 import json
 import csv
-
+from tkinter import filedialog as fd
 lists = []
 
 lineOne = True
@@ -8,7 +8,9 @@ lineOne = True
 with open("file.txt", "w") as f:
 	f.write("")
 
-file = open("Analysis-csv.csv", "r")
+csv_file = fd.askopenfilename()
+
+file = open(csv_file, "r")
 csv_reader = csv.reader(file)
 
 for row in csv_reader:
