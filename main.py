@@ -128,7 +128,6 @@ with open("file.txt", "r") as file:
                 creatingJsonFile(series, len(series))
 
             complete+= 1
-
             print(f"{complete}/{toDo} | {(complete*100)/toDo} %\r", end="")
 
     with open("series.json", "r") as f:
