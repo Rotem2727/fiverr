@@ -4,6 +4,9 @@ from tkinter import filedialog as fd
 
 lists = []
 
+toDo = 0 
+complete = 0
+
 lineOne = True
 
 with open("file.txt", "w") as f:
@@ -56,6 +59,9 @@ with open("file.txt", "r") as file:
             line[i] = int(line[i])
 
         lists.append(line)
+
+    for l in range(linesCount):
+        toDo += l
 
     for i in range(linesCount):
         appearTimes = 1
@@ -120,6 +126,10 @@ with open("file.txt", "r") as file:
                 creatingJsonFile(series, len(series))
             if matchingTimes == 5:
                 creatingJsonFile(series, len(series))
+
+            complete+= 1
+
+            print(f"{complete}/{toDo}\r", end="")
 
     with open("series.json", "r") as f:
         data = json.load(f)
